@@ -36,7 +36,7 @@ class NavBar extends React.Component {
     return (
       <Menu className="nav-bar-container">
         <Menu.Item className="borderless" onClick={this.toggleSideBar}>
-          <Button>Toggle visibility</Button>
+          <i className="fa fa-bars sidebar-toogle-icon" />
         </Menu.Item>
 
         <Menu.Item className="borderless" onClick={this.redirectToMail}>
@@ -45,12 +45,12 @@ class NavBar extends React.Component {
         </Menu.Item>
         <Menu.Item className="borderless " position="left">
           <div className="searchbox">
-            <i className="search icon searchbox__icon" />{" "}
-            <input className="searchbox__input" />
+            <i className="fa fa-search fa-lg searchbox__icon" />
+            <input className="searchbox__input" placeholder="Search mail" />
           </div>
         </Menu.Item>
         <Menu.Item position="right" className="borderless">
-          <Dropdown item className="borderless" icon="user">
+          <Dropdown item className="borderless user-profile" icon="user">
             <Dropdown.Menu>
               <Dropdown.Item onClick={this.handleLogout}>Log Out</Dropdown.Item>
             </Dropdown.Menu>

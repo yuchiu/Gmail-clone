@@ -1,22 +1,38 @@
+@import "../../../assets/css/vars.scss";
 .ui.nav-bar-container.menu {
   margin: 0;
 }
-
+.sidebar-toogle-icon {
+  color: $darkgrey;
+  padding: 15px;
+  border-radius: 80%;
+  margin: 0 15px;
+  &:hover {
+    background-color: $superlightgrey;
+    transition-duration: 0.5s;
+  }
+}
 .nav-bar-container {
   height: 8vh;
+}
+.user-profile {
+  margin-right: 50px;
 }
 
 .brand-title {
   font-size: 20px;
   padding-left: 5px;
+  color: $darkgrey;
+  margin: 0 80px 0 5px;
 }
 
 .searchbox {
-  border: 1px solid #ddd;
-  border-radius: 3px;
   padding: 8px;
+  border: 1px solid $lightgrey;
+  border-radius: 3px;
   &__icon {
     color: grey;
+    margin-right: 10px;
   }
   &__input {
     border-width: 0px;

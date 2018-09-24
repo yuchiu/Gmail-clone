@@ -1,7 +1,12 @@
+@import "../../../assets/css/vars.scss";
+
 .ui.visible.left.sidebar ~ .fixed,
 .ui.visible.left.sidebar ~ .pusher {
   transform: translate3d(250px, 0, 0) !important;
   transition-duration: 0s;
+}
+.ui.menu .item {
+  padding: 0;
 }
 
 .ui.segment.pushable {
@@ -16,4 +21,32 @@
 .ui.sidebar {
   transition-duration: 0s;
   width: 250px !important;
+}
+
+.sidebar-item {
+  display: flex;
+  color: $darkgrey;
+  font-size: 16px;
+  padding: 10px 5px;
+  border-radius: 0 25% 25% 0;
+  &:hover {
+    background-color: $superlightgrey;
+  }
+  &:hover & {
+    &__title {
+      color: $superdarkgrey;
+      font-weight: 600;
+    }
+  }
+  &__icon {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 20%;
+  }
+  &__title {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 80%;
+    text-align: left;
+  }
 }

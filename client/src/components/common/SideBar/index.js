@@ -21,25 +21,35 @@ class SidebarExampleSidebar extends React.Component {
             visible={isSideBarOpen}
             width="thin"
           >
-            <Menu.Item as="a">
-              <Icon name="home" />
-              Inbox
+            <Menu.Item as="a" className="borderless">
+              <div className="sidebar-item">
+                <i className="fas sidebar-item__icon fa-inbox" />
+                <span className="sidebar-item__title">Inbox</span>
+              </div>
             </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="gamepad" />
-              Important
+            <Menu.Item as="a" className="borderless">
+              <div className="sidebar-item">
+                <i className="fas sidebar-item__icon fa-star" />
+                <span className="sidebar-item__title">Important</span>
+              </div>
             </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="camera" />
-              Sent Mail
+            <Menu.Item as="a" className="borderless">
+              <div className="sidebar-item">
+                <i className="fas sidebar-item__icon fa-paper-plane" />
+                <span className="sidebar-item__title">Sent Mail</span>
+              </div>
             </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="camera" />
-              Drafts
+            <Menu.Item as="a" className="borderless">
+              <div className="sidebar-item">
+                <i className="fas sidebar-item__icon fa-file" />
+                <span className="sidebar-item__title">Drafts</span>
+              </div>
             </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="camera" />
-              Spam
+            <Menu.Item as="a" className="borderless">
+              <div className="sidebar-item">
+                <i className="fas sidebar-item__icon fa-exclamation-circle" />
+                <span className="sidebar-item__title">Spam</span>
+              </div>
             </Menu.Item>
           </Sidebar>
 
