@@ -15,3 +15,8 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+/* state selectors */
+const getText = state => state.testReducer.text;
+
+export { getText };

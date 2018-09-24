@@ -1,4 +1,4 @@
-# Slack Clone
+# Gmail Clone
 
 - Required softwares and the versions this project is using
 

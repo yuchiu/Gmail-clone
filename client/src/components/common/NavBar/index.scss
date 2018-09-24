@@ -1,0 +1,19 @@
+.brand-title {
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+.searchbox {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 8px;
+  &__icon {
+    color: grey;
+  }
+  &__input {
+    border-width: 0px;
+    border: none;
+    outline: none;
+    width: 400px;
+  }
+}

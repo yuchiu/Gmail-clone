@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { testAction } from "@/actions";
+import { testSelector } from "@/reducers/selectors";
 import Text from "./Text";
 
 class TextChanger extends React.Component {
@@ -41,7 +42,7 @@ TextChanger.propTypes = {
   fetchText: PropTypes.func
 };
 
-const stateToProps = state => ({ text: state.testReducer.text });
+const stateToProps = state => ({ text: testSelector.getText(state) });
 
 const dispatchToProps = dispatch => ({
   fetchText: text => dispatch(testAction.fetchText(text))

@@ -7,8 +7,8 @@ class TestPage extends React.Component {
     return (
       <React.Fragment>
         <NavBar />
-        <main class="testpage">
-          <Logo size="256" />
+        <main className="testpage">
+          <Logo size="128" />
           <TextChanger />
         </main>
       </React.Fragment>
