@@ -1,0 +1,19 @@
+.ui.visible.left.sidebar ~ .fixed,
+.ui.visible.left.sidebar ~ .pusher {
+  transform: translate3d(250px, 0, 0) !important;
+  transition-duration: 0s;
+}
+
+.ui.segment.pushable {
+  padding: 0;
+  margin: 0;
+}
+
+.ui.basic.segment {
+  padding: 0;
+}
+
+.ui.sidebar {
+  transition-duration: 0s;
+  width: 250px !important;
+}

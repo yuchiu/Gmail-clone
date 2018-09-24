@@ -1,10 +1,10 @@
 import React from "react";
-import { Menu, Dropdown } from "semantic-ui-react";
+import { Menu, Dropdown, Button } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { authAction } from "@/actions";
+import { authAction, appGlobalStateAction } from "@/actions";
 
 import "./index.scss";
 import Logo from "@/components/common/Logo";
@@ -22,15 +22,23 @@ class NavBar extends React.Component {
     history.push("/login");
   };
 
+  toggleSideBar = () => {
+    const { toggleSideBar } = this.props;
+    toggleSideBar();
+  };
+
   redirectToMail = () => {
     const { history } = this.props;
     history.push("/mail");
   };
 
   render() {
-    const { history } = this.props;
     return (
-      <Menu>
+      <Menu className="nav-bar-container">
+        <Menu.Item className="borderless" onClick={this.toggleSideBar}>
+          <Button>Toggle visibility</Button>
+        </Menu.Item>
+
         <Menu.Item className="borderless" onClick={this.redirectToMail}>
           <Logo size="32" className="brand-logo" />
           <span className="brand-title">Gmail</span>
@@ -57,11 +65,10 @@ NavBar.propTypes = {
   history: PropTypes.object.isRequired
 };
 const dispatchToProps = dispatch => ({
-  logoutUser: () => {
-    dispatch(authAction.logoutUser());
-  }
-});
+  logoutUser: () => dispatch(authAction.logoutUser()),
 
+  toggleSideBar: () => dispatch(appGlobalStateAction.toggleSideBar())
+});
 export default withRouter(
   connect(
     null,

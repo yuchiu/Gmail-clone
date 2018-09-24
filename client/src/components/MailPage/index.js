@@ -1,18 +1,86 @@
 import React from "react";
+import { connect } from "react-redux";
 import { SideBar, NavBar } from "../common";
 
-class TestPage extends React.Component {
+import "./index.scss";
+import { appGlobalStateSelector } from "@/reducers/selectors";
+
+class MailPage extends React.Component {
   render() {
+    const { isSideBarOpen } = this.props;
     return (
       <React.Fragment>
         <NavBar />
-        <main className="mailpage">
-          <SideBar />
-          gmail page
-        </main>
+        <SideBar>
+          <main className="mailpage">
+            <nav className="mail-category">Primary | Social | Promotions</nav>
+            <section className={`mail-list side-bar-${isSideBarOpen}`}>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+              <li>- email</li>
+            </section>
+          </main>
+        </SideBar>
       </React.Fragment>
     );
   }
 }
 
-export default TestPage;
+const stateToProps = state => ({
+  isSideBarOpen: appGlobalStateSelector.getIsSideBarOpen(state)
+});
+
+export default connect(
+  stateToProps,
+  null
+)(MailPage);

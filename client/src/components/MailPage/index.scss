@@ -1,0 +1,16 @@
+.mailpage {
+  display: grid;
+  height: 92vh;
+}
+.side-bar-true {
+  width: calc(100% - 250px);
+}
+.side-bar-false {
+  width: 100%;
+}
+.mail-list {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  transition-duration: 0s;
+}

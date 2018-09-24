@@ -2,6 +2,7 @@ import { getError } from "./error.reducer";
 import { getText } from "./test.reducer";
 import { getIsUserLoggedIn } from "./auth.reducer";
 import { getCurrentUser, getUsername } from "./user.reducer";
+import { getIsSideBarOpen } from "./appGlobalState.reducer";
 
 const testSelector = {
   getText: state => getText(state)
@@ -19,4 +20,14 @@ const errorSelector = {
   getError: state => getError(state)
 };
 
-export { testSelector, errorSelector, authSelector, userSelector };
+const appGlobalStateSelector = {
+  getIsSideBarOpen: state => getIsSideBarOpen(state)
+};
+
+export {
+  testSelector,
+  appGlobalStateSelector,
+  errorSelector,
+  authSelector,
+  userSelector
+};

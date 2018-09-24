@@ -1,61 +1,64 @@
-import React, { Component } from "react";
-import {
-  Button,
-  Header,
-  Icon,
-  Image,
-  Menu,
-  Segment,
-  Sidebar
-} from "semantic-ui-react";
+import React from "react";
+import { connect } from "react-redux";
+import { Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 
-export default class SidebarExampleSidebar extends Component {
-  state = { visible: false };
+import "./index.scss";
+import { appGlobalStateSelector } from "@/reducers/selectors";
 
-  handleButtonClick = () => this.setState({ visible: !this.state.visible });
-
-  handleSidebarHide = () => this.setState({ visible: false });
-
+class SidebarExampleSidebar extends React.Component {
   render() {
-    const { visible } = this.state;
+    const { isSideBarOpen, children } = this.props;
 
     return (
-      <div>
-        <Button onClick={this.handleButtonClick}>Toggle visibility</Button>
-
-        <Sidebar.Pushable as={Segment}>
+      <React.Fragment>
+        <Sidebar.Pushable className="Sidebar-pushable" as={Segment}>
           <Sidebar
+            className="Sidebar"
             as={Menu}
-            animation="overlay"
             icon="labeled"
-            inverted
             onHide={this.handleSidebarHide}
             vertical
-            visible={visible}
+            visible={isSideBarOpen}
             width="thin"
           >
             <Menu.Item as="a">
               <Icon name="home" />
-              Home
+              Inbox
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="gamepad" />
-              Games
+              Important
             </Menu.Item>
             <Menu.Item as="a">
               <Icon name="camera" />
-              Channels
+              Sent Mail
+            </Menu.Item>
+            <Menu.Item as="a">
+              <Icon name="camera" />
+              Drafts
+            </Menu.Item>
+            <Menu.Item as="a">
+              <Icon name="camera" />
+              Spam
             </Menu.Item>
           </Sidebar>
 
-          <Sidebar.Pusher>
-            <Segment basic>
-              <Header as="h3">Application Content</Header>
-              <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
+          <Sidebar.Pusher className="Sidebar-pusher">
+            <Segment className="Sidebar-segment" basic>
+              {children}
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-      </div>
+      </React.Fragment>
     );
   }
 }
+
+const stateToProps = state => ({
+  isSideBarOpen: appGlobalStateSelector.getIsSideBarOpen(state)
+});
+
+export default connect(
+  stateToProps,
+  null
+)(SidebarExampleSidebar);
