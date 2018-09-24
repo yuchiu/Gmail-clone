@@ -3,9 +3,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./index.scss";
 import TestPage from "./TestPage";
-import AboutPage from "./AboutPage";
+import MailPage from "./MailPage";
+import RegisterPage from "./RegisterPage";
+import LoginPage from "./LoginPage";
 import NotFoundPage from "./NotFoundPage";
 import ErrorPage from "./ErrorPage";
+import RouteUser from "./RouteUser";
+import AuthenticatedRoute from "./AuthenticatedRoute";
+import TokenAutoAuth from "./TokenAutoAuth";
 
 class Router extends React.Component {
   constructor(props) {
@@ -28,11 +33,15 @@ class Router extends React.Component {
       <ErrorPage />
     ) : (
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={TestPage} />
-          <Route exact path="/about" component={AboutPage} />
-          <Route exact path="/:unfoundLocation" component={NotFoundPage} />
-        </Switch>
+        <React.Fragment>
+          <Switch>
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/mail" component={MailPage} />
+            <Route exact path="/test" component={TestPage} />
+            <Route exact path="/:unfoundLocation" component={NotFoundPage} />
+          </Switch>{" "}
+        </React.Fragment>
       </BrowserRouter>
     );
   }
