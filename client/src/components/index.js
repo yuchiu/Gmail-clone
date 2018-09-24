@@ -34,10 +34,13 @@ class Router extends React.Component {
     ) : (
       <BrowserRouter>
         <React.Fragment>
+          {/* try to log in user automatically if token exist in local storage */}
+          <TokenAutoAuth />
           <Switch>
+            <Route exact path="/" component={RouteUser} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/mail" component={MailPage} />
+            <AuthenticatedRoute exact path="/mail" component={MailPage} />
             <Route exact path="/test" component={TestPage} />
             <Route exact path="/:unfoundLocation" component={NotFoundPage} />
           </Switch>{" "}

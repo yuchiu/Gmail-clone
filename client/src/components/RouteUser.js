@@ -3,8 +3,8 @@ import { withRouter } from "react-router-dom";
 
 class RouteUser extends React.Component {
   componentDidMount() {
-    // if user logged in, route to mail
-    // if not, route to login
+    const { history } = this.props;
+    history.push("/mail");
   }
 
   render() {
