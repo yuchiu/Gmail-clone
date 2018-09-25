@@ -3,11 +3,11 @@ import { Menu, Dropdown, Button } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
 import { authAction, appGlobalStateAction } from "@/actions";
 
 import "./index.scss";
 import Logo from "@/components/common/Logo";
+import SearchInput from "./SearchInput";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -44,10 +44,7 @@ class NavBar extends React.Component {
           <span className="brand-title">Gmail</span>
         </Menu.Item>
         <Menu.Item className="borderless " position="left">
-          <div className="searchbox">
-            <i className="fa fa-search fa-lg searchbox__icon" />
-            <input className="searchbox__input" placeholder="Search mail" />
-          </div>
+          <SearchInput />
         </Menu.Item>
         <Menu.Item position="right" className="borderless">
           <Dropdown item className="borderless user-profile" icon="user">

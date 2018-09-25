@@ -1,8 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { SideBar, NavBar } from "../common";
 
 import "./index.scss";
+import NavBar from "./NavBar";
+import SideBar from "./SideBar";
+import MailList from "./MailList";
+import MailOption from "./MailOption";
+import MailCategory from "./MailCategory";
 import { appGlobalStateSelector } from "@/reducers/selectors";
 
 class MailPage extends React.Component {
@@ -12,63 +16,10 @@ class MailPage extends React.Component {
       <React.Fragment>
         <NavBar />
         <SideBar>
-          <main className="mailpage">
-            <nav className="mail-category">Primary | Social | Promotions</nav>
-            <section className={`mail-list side-bar-${isSideBarOpen}`}>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-              <li>- email</li>
-            </section>
+          <main className={`mailpage side-bar-${isSideBarOpen}`}>
+            <MailOption />
+            <MailCategory />
+            <MailList />
           </main>
         </SideBar>
       </React.Fragment>

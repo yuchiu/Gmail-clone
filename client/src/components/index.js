@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./index.scss";
-import TestPage from "./TestPage";
+
 import MailPage from "./MailPage";
 import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
@@ -41,9 +41,8 @@ class Router extends React.Component {
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
             <AuthenticatedRoute exact path="/mail" component={MailPage} />
-            <Route exact path="/test" component={TestPage} />
             <Route exact path="/:unfoundLocation" component={NotFoundPage} />
-          </Switch>{" "}
+          </Switch>
         </React.Fragment>
       </BrowserRouter>
     );

@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 import "./index.scss";
 import { validateForm } from "@/utils";
 import { authAction, errorAction } from "@/actions";
-import { NavBar, InlineError } from "@/components/common";
+import { InlineError } from "@/components/common";
 import LoginForm from "./LoginForm";
 import { authSelector, errorSelector } from "@/reducers/selectors";
 
@@ -64,7 +64,6 @@ class LoginPage extends React.Component {
     return (
       <React.Fragment>
         {isUserLoggedIn && <Redirect to="/mail" />}
-        <NavBar />
         <main className="login-page">
           <LoginForm
             handleLogin={this.handleLogin}

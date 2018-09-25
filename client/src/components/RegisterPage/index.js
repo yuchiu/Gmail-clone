@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 import "./index.scss";
 import { validateForm } from "@/utils";
 import { authAction, errorAction } from "@/actions";
-import { NavBar, InlineError } from "@/components/common";
+import { InlineError } from "@/components/common";
 import { authSelector, errorSelector } from "@/reducers/selectors";
 import RegisterForm from "./RegisterForm";
 
@@ -83,7 +83,6 @@ class RegisterPage extends React.Component {
     return (
       <React.Fragment>
         {isUserLoggedIn && <Redirect to="/mail" />}
-        <NavBar />
         <main className="register-page">
           <RegisterForm
             handleRegister={this.handleRegister}
