@@ -10,6 +10,7 @@ import bodyParser from "body-parser";
 import config from "./config";
 import router from "./router";
 import "./utils/passport";
+import "./channel";
 
 const app = express();
 
