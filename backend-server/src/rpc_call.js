@@ -1,64 +1,30 @@
-const amqp = require("amqplib/callback_api");
+const amqp = require("amqplib");
+const uuid = require("uuid/v4");
 
 const url = process.env.AMQP_URL || "amqp://guest:guest@localhost:5672";
 
-const args = process.argv.slice(2);
+const amqpCon = amqp.connect(url);
 
-if (args.length === 0) {
-  console.log("Usage: rpc_client.js num");
-  process.exit(1);
-}
+amqpCon.then(conn => conn.createChannel()).then(ch => {
+  ch.assertQueue("", {
+    exclusive: true,
+    expires: 5000,
+    autodelete: true
+  }).then(q => {
+    const corr = uuid();
+    const queue = "email_rpc_queue";
+    const content = "Hello World";
 
-function generateUuid() {
-  return (
-    Math.random().toString() +
-    Math.random().toString() +
-    Math.random().toString()
-  );
-}
+    ch.sendToQueue(queue, Buffer.from(content), {
+      correlationId: corr,
+      replyTo: q.queue
+    });
 
-amqp.connect(
-  url,
-  (err, conn) => {
-    if (err) {
-      console.error("Error connecting:", err.stack);
-    } else {
-      console.log(`connected to ${url}`);
-      conn.createChannel((createChannelErr, ch) => {
-        if (createChannelErr) {
-          console.log(`createChannelErr ${createChannelErr}`);
-        } else {
-          ch.assertQueue("", { exclusive: true }, (assertQueueErr, q) => {
-            if (assertQueueErr) {
-              console.log(`assertQueueErr${assertQueueErr}`);
-            } else {
-              const corr = generateUuid();
-              const num = parseInt(args[0], 10);
+    console.log(`Sent ${content}`);
 
-              console.log(" [x] Requesting fib(%d)", num);
-
-              ch.consume(
-                q.queue,
-                msg => {
-                  if (msg.properties.correlationId === corr) {
-                    console.log(" [.] Got %s", msg.content.toString());
-                    setTimeout(() => {
-                      conn.close();
-                      process.exit(0);
-                    }, 500);
-                  }
-                },
-                { noAck: true }
-              );
-
-              ch.sendToQueue("rpc_queue", Buffer.from(num.toString()), {
-                correlationId: corr,
-                replyTo: q.queue
-              });
-            }
-          });
-        }
-      });
-    }
-  }
-);
+    ch.consume(q.queue, msg => {
+      const result = msg.content.toString();
+      console.log(`Receive ${result}`);
+    });
+  });
+});
