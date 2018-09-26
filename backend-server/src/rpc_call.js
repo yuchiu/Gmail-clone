@@ -13,18 +13,18 @@ amqpCon.then(conn => conn.createChannel()).then(ch => {
   }).then(q => {
     const corr = uuid();
     const queue = "email_rpc_queue";
-    const content = "Hello World";
+    const content = { id: "5", offset: "10" };
 
-    ch.sendToQueue(queue, Buffer.from(content), {
+    ch.sendToQueue(queue, Buffer.from(JSON.stringify(content)), {
       correlationId: corr,
       replyTo: q.queue
     });
 
-    console.log(`Sent ${content}`);
+    console.log(`Sent ${JSON.stringify(content)}`);
 
     ch.consume(q.queue, msg => {
-      const result = msg.content.toString();
-      console.log(`Receive ${result}`);
+      const result = JSON.parse(msg.content);
+      console.log(`Receive ${JSON.stringify(result)}`);
     });
   });
 });
