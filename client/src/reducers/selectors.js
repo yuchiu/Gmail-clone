@@ -5,7 +5,7 @@ import {
   getIsSideBarOpen,
   getSelectedSideBarItem
 } from "./globalState.reducer";
-import { getMailList } from "./mail.reducer";
+import { getMailOverviewList } from "./mail.reducer";
 
 const userSelector = {
   getCurrentUser: state => getCurrentUser(state),
@@ -25,7 +25,7 @@ const globalStateSelector = {
 };
 
 const mailSelector = {
-  getMailList: state => getMailList(state)
+  getMailOverviewList: state => getMailOverviewList(state)
 };
 
 export {

@@ -1,7 +1,45 @@
+@import "../../../../assets/css/vars.scss";
 .mail-list {
   display: flex;
   overflow-y: auto;
   justify-content: flex-start;
   flex-direction: column;
   transition-duration: 0s;
+}
+
+.mail-row {
+  list-style: none;
+  display: flex;
+  padding: 10px 10px 0 5px;
+  border: 1px solid $superlightgrey;
+  &:hover {
+    background-color: $superlightgrey;
+    cursor: pointer;
+  }
+  &__important {
+    flex-basis: 3%;
+    color: $lightgrey;
+    &:hover {
+      color: $grey;
+    }
+    &--true {
+      color: $yellow;
+    }
+  }
+  &__sender {
+    font-weight: bold;
+    flex-basis: 10%;
+  }
+  &__body {
+    flex-basis: 80%;
+    &__subject {
+      font-weight: bold;
+    }
+    &__overview {
+      color: $grey;
+    }
+  }
+  &__timestamp {
+    flex-basis: 7%;
+  }
 }
