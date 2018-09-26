@@ -6,6 +6,7 @@ import "./index.scss";
 import SideBarItem from "./SideBarItem";
 import { globalStateAction } from "@/actions";
 import { globalStateSelector } from "@/reducers/selectors";
+import composeLogoSrc from "@/assets/images/logos/compose-logo.png";
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -33,9 +34,15 @@ class SideBar extends React.Component {
             width="thin"
           >
             <Menu.Item as="a" className="borderless">
-              <div className={`sidebar-item`}>
-                <i className="fas fa-plus" />
-                <span className="">compose</span>
+              <div className={`sidebar-compose`}>
+                <button className="compose-button">
+                  <img
+                    alt="compose-button"
+                    className="compose-button__logo"
+                    src={composeLogoSrc}
+                  />
+                  <span className="compose-button__title">Compose</span>
+                </button>
               </div>
             </Menu.Item>
             <SideBarItem

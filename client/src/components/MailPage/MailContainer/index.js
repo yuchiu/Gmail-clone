@@ -19,8 +19,6 @@ class MailPage extends React.Component {
     return (
       <React.Fragment>
         <main className={`mail-container side-bar-${isSideBarOpen}`}>
-          <MailOption />
-          <MailCategory />
           <MailList />
         </main>
       </React.Fragment>

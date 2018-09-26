@@ -29,7 +29,6 @@ const getMailOverviewList = createSelector(getStateMailList, mailList =>
       const newMail = { ...mail };
       const dash = " - ";
       newMail.overview = dash.concat(newMail.body);
-      console.log(newMail.subject.length, newMail.overview.length);
       if (newMail.subject.length + newMail.overview.length > 150) {
         newMail.overview = newMail.overview
           .slice(0, 149 - newMail.subject.length)

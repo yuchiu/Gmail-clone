@@ -1,10 +1,8 @@
 @import "../../../../assets/css/vars.scss";
 .mail-list {
   display: flex;
-  overflow-y: auto;
   justify-content: flex-start;
   flex-direction: column;
-  transition-duration: 0s;
 }
 
 .mail-row {
