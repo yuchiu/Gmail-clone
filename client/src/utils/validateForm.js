@@ -46,5 +46,21 @@ export default {
       clientErrors.email = "Invalid email";
     }
     return clientErrors;
+  },
+  composeMail: data => {
+    const clientErrors = {};
+    if (!data.recipient) {
+      clientErrors.recipient = "Recipient can't be blank";
+    } else if (!Validator.isEmail(data.recipient)) {
+      clientErrors.recipient = "Invalid email";
+    }
+    if (data.subject.length > 128) {
+      clientErrors.subject =
+        "Length of subject can't be longer than 128 characters";
+    }
+    if (!data.message) {
+      clientErrors.message = "Email body can't be blank";
+    }
+    return clientErrors;
   }
 };

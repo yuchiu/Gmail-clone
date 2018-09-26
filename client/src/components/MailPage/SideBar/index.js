@@ -4,6 +4,7 @@ import { Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 
 import "./index.scss";
 import SideBarItem from "./SideBarItem";
+import ComposeMailModal from "./ComposeMailModal";
 import { globalStateAction } from "@/actions";
 import { globalStateSelector } from "@/reducers/selectors";
 import composeLogoSrc from "@/assets/images/logos/compose-logo.png";
@@ -11,8 +12,21 @@ import composeLogoSrc from "@/assets/images/logos/compose-logo.png";
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isComposeMailModalOpen: false
+    };
     this.handleSelect = this.handleSelect.bind(this);
+    this.toggleComposeMailModal = this.toggleComposeMailModal.bind(this);
   }
+
+  toggleComposeMailModal = e => {
+    if (e) {
+      e.preventDefault();
+    }
+    this.setState({
+      isComposeMailModalOpen: !this.state.isComposeMailModalOpen
+    });
+  };
 
   handleSelect = selectedName => {
     const { switchSideBarItem } = this.props;
@@ -20,6 +34,7 @@ class SideBar extends React.Component {
   };
 
   render() {
+    const { isComposeMailModalOpen } = this.state;
     const { isSideBarOpen, children, selectedSideBarItem } = this.props;
     return (
       <React.Fragment>
@@ -33,9 +48,17 @@ class SideBar extends React.Component {
             visible={isSideBarOpen}
             width="thin"
           >
+            <ComposeMailModal
+              onClose={this.toggleComposeMailModal}
+              isOpen={isComposeMailModalOpen}
+              key="compose-mail-modal"
+            />
             <Menu.Item as="a" className="borderless">
               <div className={`sidebar-compose`}>
-                <button className="compose-button">
+                <button
+                  className="compose-button"
+                  onClick={this.toggleComposeMailModal}
+                >
                   <img
                     alt="compose-button"
                     className="compose-button__logo"
