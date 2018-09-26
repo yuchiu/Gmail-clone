@@ -7,6 +7,10 @@ const initialState = {
 export default (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
+    case constants.MAIL_ERROR:
+      newState.error = action.payload.error;
+      return newState;
+
     case constants.AUTH_ERROR:
       newState.error = action.payload.error;
       return newState;

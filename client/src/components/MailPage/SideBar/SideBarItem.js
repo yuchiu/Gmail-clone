@@ -3,9 +3,15 @@ import { Menu } from "semantic-ui-react";
 
 class SideBarItem extends React.Component {
   render() {
-    const { label, itemName, handleSelect, selectedItem, faIcon } = this.props;
+    const {
+      label,
+      itemName,
+      handleSelect,
+      selectedSideBarItem,
+      faIcon
+    } = this.props;
     const selectedClassName =
-      itemName === selectedItem
+      itemName === selectedSideBarItem
         ? "sidebar-item--selected sidebar-end--selected"
         : "";
     return (

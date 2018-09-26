@@ -4,27 +4,22 @@ import { Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 
 import "./index.scss";
 import SideBarItem from "./SideBarItem";
-import { appGlobalStateSelector } from "@/reducers/selectors";
+import { globalStateAction } from "@/actions";
+import { globalStateSelector } from "@/reducers/selectors";
 
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedItem: "inbox"
-    };
-
     this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleSelect = selectedName => {
-    this.setState({
-      selectedItem: selectedName
-    });
+    const { switchSideBarItem } = this.props;
+    switchSideBarItem(selectedName);
   };
 
   render() {
-    const { isSideBarOpen, children } = this.props;
-    const { selectedItem } = this.state;
+    const { isSideBarOpen, children, selectedSideBarItem } = this.props;
     return (
       <React.Fragment>
         <Sidebar.Pushable className="Sidebar-pushable" as={Segment}>
@@ -47,7 +42,7 @@ class SideBar extends React.Component {
               label="inbox"
               itemName="inbox"
               handleSelect={this.handleSelect.bind(this, "inbox")}
-              selectedItem={selectedItem}
+              selectedSideBarItem={selectedSideBarItem}
               faIcon="fas fa-inbox"
             />
 
@@ -55,7 +50,7 @@ class SideBar extends React.Component {
               label="important"
               itemName="important"
               handleSelect={this.handleSelect.bind(this, "important")}
-              selectedItem={selectedItem}
+              selectedSideBarItem={selectedSideBarItem}
               faIcon="fas fa-star"
             />
 
@@ -63,21 +58,21 @@ class SideBar extends React.Component {
               label="Sent Mail"
               itemName="sent-mail"
               handleSelect={this.handleSelect.bind(this, "sent-mail")}
-              selectedItem={selectedItem}
+              selectedSideBarItem={selectedSideBarItem}
               faIcon="fas fa-paper-plane"
             />
             <SideBarItem
               label="Drafts"
               itemName="drafts"
               handleSelect={this.handleSelect.bind(this, "drafts")}
-              selectedItem={selectedItem}
+              selectedSideBarItem={selectedSideBarItem}
               faIcon="fas fa-file"
             />
             <SideBarItem
               label="Spam"
               itemName="spam"
               handleSelect={this.handleSelect.bind(this, "spam")}
-              selectedItem={selectedItem}
+              selectedSideBarItem={selectedSideBarItem}
               faIcon="fas fa-exclamation-circle"
             />
           </Sidebar>
@@ -94,10 +89,16 @@ class SideBar extends React.Component {
 }
 
 const stateToProps = state => ({
-  isSideBarOpen: appGlobalStateSelector.getIsSideBarOpen(state)
+  isSideBarOpen: globalStateSelector.getIsSideBarOpen(state),
+  selectedSideBarItem: globalStateSelector.getSelectedSideBarItem(state)
+});
+
+const dispatchToProps = dispatch => ({
+  switchSideBarItem: selectedItem =>
+    dispatch(globalStateAction.switchSideBarItem(selectedItem))
 });
 
 export default connect(
   stateToProps,
-  null
+  dispatchToProps
 )(SideBar);

@@ -3,7 +3,7 @@ import { Menu, Dropdown, Button } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { authAction, appGlobalStateAction } from "@/actions";
+import { authAction, globalStateAction } from "@/actions";
 
 import "./index.scss";
 import Logo from "@/components/common/Logo";
@@ -64,7 +64,7 @@ NavBar.propTypes = {
 const dispatchToProps = dispatch => ({
   logoutUser: () => dispatch(authAction.logoutUser()),
 
-  toggleSideBar: () => dispatch(appGlobalStateAction.toggleSideBar())
+  toggleSideBar: () => dispatch(globalStateAction.toggleSideBar())
 });
 export default withRouter(
   connect(

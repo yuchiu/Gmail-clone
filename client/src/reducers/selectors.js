@@ -1,7 +1,11 @@
 import { getError } from "./error.reducer";
 import { getIsUserLoggedIn } from "./auth.reducer";
 import { getCurrentUser, getUsername } from "./user.reducer";
-import { getIsSideBarOpen } from "./appGlobalState.reducer";
+import {
+  getIsSideBarOpen,
+  getSelectedSideBarItem
+} from "./globalState.reducer";
+import { getMailList } from "./mail.reducer";
 
 const userSelector = {
   getCurrentUser: state => getCurrentUser(state),
@@ -15,8 +19,19 @@ const errorSelector = {
   getError: state => getError(state)
 };
 
-const appGlobalStateSelector = {
-  getIsSideBarOpen: state => getIsSideBarOpen(state)
+const globalStateSelector = {
+  getIsSideBarOpen: state => getIsSideBarOpen(state),
+  getSelectedSideBarItem: state => getSelectedSideBarItem(state)
 };
 
-export { appGlobalStateSelector, errorSelector, authSelector, userSelector };
+const mailSelector = {
+  getMailList: state => getMailList(state)
+};
+
+export {
+  globalStateSelector,
+  mailSelector,
+  errorSelector,
+  authSelector,
+  userSelector
+};
