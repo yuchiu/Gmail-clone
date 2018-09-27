@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 
 import models from "../models";
-import { jwtSignUser } from "../utils";
+import { jwtSignUser, rpcClient } from "../utils";
 
 const userSummary = user => {
   const summary = {
@@ -102,7 +102,7 @@ const authController = {
       const user = await models.User.findOne({
         username
       });
-
+      rpcClient.add(1, 3);
       res.status(200).send({
         confirmation: true,
         user: userSummary(user)
